@@ -41,7 +41,7 @@ export default function Home() {
           {!loading && notes.length > 0 && (
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-3 lg:gap-4'>
               {notes.map(note => (
-                <NoteCard key={note._id} note={note} />
+                <NoteCard key={note._id} note={note} onDelete={(id) => setNotes(prev => prev.filter(note => note._id !== id))} />
               ))}
             </div>
           )}

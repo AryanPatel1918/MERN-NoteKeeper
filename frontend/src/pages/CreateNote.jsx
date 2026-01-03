@@ -36,9 +36,13 @@ export default function CreateNote() {
       toast.success("Note created successfully")
       navigate('/')
     } catch (error) {
-      if (error.response) {
+      if (error.response?.status === 429) {
+        toast("You're creating notes too quickly. Please wait a few seconds before trying again.", {
+          icon: "⌛"
+        })
+      } else if (error.response) {
         console.log(error.response)
-        toast.error(`Error ${error.response.status}: ${error.response.data?.error || "Server error"}`)
+        toast.error(`${error.response.status} Error: ${error.response.data?.error || "Server error"}`)
       } else {
         console.log(`Error: ${error.message}`)
         toast.error("Network error or server not reachable")
@@ -59,20 +63,17 @@ export default function CreateNote() {
 
           <div className="card bg-[hsl(0_0_12%)]">
             <div className="card-body">
-              <h2 className="card-title text-2xl mb-4">Create New Note</h2>
-              <form onSubmit={handleSubmit}>
-                <label className="label">
-                  <span className="font-medium text-lg">Title</span>
+              <h2 className="card-title text-2xl mb-5">Create New Note</h2>
+              <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                <label className="flex flex-col w-[50%] gap-2">
+                  <span className="font-medium">Title</span>
+                  <input className="input input-bordered focus:outline-0" value={title} onChange={e => setTitle(e.target.value)} placeholder="Grocery List" />
                 </label>
-                <input className="input input-bordered focus:outline-0" value={title} onChange={e => setTitle(e.target.value)} placeholder="Grocery List" />
-                <label className="label">
-                  <span className="font-medium text-lg">Content</span>
+                <label className="flex flex-col gap-2">
+                  <span className="font-medium">Content</span>
+                  <textarea className="input rounded-r-none input-bordered focus:outline-0 w-full h-full p-4" rows={5} value={content} onChange={e => setContent(e.target.value)} placeholder="Apples, bread, cheese, french fries" />
                 </label>
-                <textarea className="input input-bordered focus:outline-0 w-full h-full p-4" rows={5} value={content} onChange={e => setContent(e.target.value)} placeholder="Apples, bread, cheese, french fries" />
-
-                <div className="card-actions justify-center mt-4">
-                  <button className="btn btn-primary" disabled={loading}>{loading ? "Saving Note..." : "Create Note"}</button>
-                </div>
+                <button className="btn btn-primary w-fit ml-auto mt-2" disabled={loading}>{loading ? "Saving Note..." : "Create Note"}</button>
               </form>
             </div>
 
