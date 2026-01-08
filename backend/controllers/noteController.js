@@ -3,7 +3,7 @@ import Note from "../models/Note.js"
 // Get all notes
 export async function getAllNotes(req, res) {
     try {
-        const notes = await Note.find()
+        const notes = await Note.find().sort({ updatedAt: -1 })
         res.json(notes)
     } catch (error) {
         console.log("Error: " + error.message)
@@ -19,7 +19,7 @@ export async function getNoteById(req, res) {
         if (!note) {
             return res.status(404).json({message: "Note not found"})
         }
-        res.json({note})
+        res.json(note)
     } catch (error) {
         console.log("Error: " + error.message)
         res.status(500).json({error: error.message})
