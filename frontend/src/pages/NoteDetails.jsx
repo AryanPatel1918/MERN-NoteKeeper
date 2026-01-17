@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom"
 import { ArrowLeft } from "lucide-react"
 import { toast } from 'react-hot-toast'
 import LoadingOverlay from "../components/LoadingOverlay"
+import BackButton from "../components/BackButton"
 
 export default function NoteDetails() {
   const [title, setTitle] = useState("")
@@ -40,10 +41,7 @@ export default function NoteDetails() {
     <div className="min-h-screen bg-base-200">
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-2xl mx-auto">
-          <Link to="/" className="btn btn-ghost mb-6">
-            <ArrowLeft className="size-5" />
-            <span className="text-base">Back to Notes</span>
-          </Link>
+          <BackButton />
 
           {isFetching && <LoadingOverlay />}
           <div className={`card bg-[hsl(0_0_12%)] transition-opacity duration-500 ${isFetching ? "opacity-0" : "opacity-100"}`}>

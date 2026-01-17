@@ -7,6 +7,7 @@ import { toast } from 'react-hot-toast'
 import NoteCard from '../components/NoteCard'
 import BackendErrorState from '../components/BackendErrorState'
 import LoadingOverlay from '../components/LoadingOverlay'
+import EmptyNotesState from '../components/EmptyNotesState'
 
 export default function Home() {
   const [isRateLimited, setIsRateLimited] = useState(false)
@@ -43,9 +44,7 @@ export default function Home() {
       ) : error ? (
           <BackendErrorState />
       ) : notes.length === 0 ? (
-          <div className="mt-8 sm:mt-14 text-center sm:text-lg text-base-content/70 py-10">
-            No notes yet. Create your first one!
-          </div>
+          <EmptyNotesState />
       ) : (
         <div className='max-w-7xl mx-auto p-4 mt-6'>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-3 lg:gap-4'>

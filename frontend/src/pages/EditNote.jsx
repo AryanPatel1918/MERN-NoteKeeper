@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
 import { Link, useNavigate, useParams } from "react-router-dom"
-import { ArrowLeft } from "lucide-react"
 import { toast } from 'react-hot-toast'
 import LoadingOverlay from "../components/LoadingOverlay"
+import BackButton from "../components/BackButton"
 
 export default function EditNote() {
   const [title, setTitle] = useState("")
@@ -82,10 +82,7 @@ export default function EditNote() {
     <div className="min-h-screen bg-base-200">
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-2xl mx-auto">
-          <Link to="/" className="btn btn-ghost mb-6">
-            <ArrowLeft className="size-5" />
-            <span className="text-base">Back to Notes</span>
-          </Link>
+          <BackButton />
 
           <div className="card bg-[hsl(0_0_12%)]">
             <div className="card-body relative p-4 sm:p-8">

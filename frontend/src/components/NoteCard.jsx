@@ -45,10 +45,10 @@ export default function NoteCard({ note, onDelete }) {
     <>
       <div onClick={() => navigate(`/notes/${note._id}`)} title="View Note" className="card bg-base-300 cursor-pointer shadow-md hover:shadow-[#00FF9D] hover:-translate-y-1 transition-all duration-300 border-t-4 border-[#00FF9D]">
         <div className="card-body p-6">
-          <h3 className="card-title text-base sm:text-lg md:text-xl line-clamp-1 break-all">{note.title}</h3>
-          <p className="text-sm sm:text-base md:text-lg text-base-content/80 line-clamp-3 break-all">{note.content}</p>
+          <h3 className="card-title text-base sm:text-lg line-clamp-1 break-all">{note.title}</h3>
+          <p className="text-sm sm:text-base text-base-content/80 line-clamp-3 break-all">{note.content}</p>
           <div className="card-actions justify-between items-center mt-4">
-            <span className="text-sm sm:text-base md:text-lg text-base-content/60">
+            <span className="text-sm sm:text-base text-base-content/60">
               {new Date(note.updatedAt).toLocaleString("en-US", {
                 year: "numeric",
                 month: "short",
