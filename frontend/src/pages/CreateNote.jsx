@@ -1,6 +1,6 @@
-import axios from "axios"
 import { useState } from "react"
-import { Link, useNavigate } from "react-router"
+import axios from "axios"
+import { Link, useNavigate } from "react-router-dom"
 import { ArrowLeft } from "lucide-react"
 import { toast } from 'react-hot-toast'
 
@@ -36,12 +36,13 @@ export default function CreateNote() {
       toast.success("Note created successfully")
       navigate('/')
     } catch (error) {
-      if (error.response?.status === 429) {
-        toast("You're creating notes too quickly. Please wait a few seconds before trying again.", {
-          icon: "⌛"
-        })
-      } else if (error.response) {
-        console.log(error.response)
+      if (error.response) {
+        if (error.response.status === 429) {
+          toast("You're creating notes too quickly. Please wait a few seconds before trying again.", {
+            icon: "⌛"
+          })
+          return
+        }
         toast.error(`${error.response.status} Error: ${error.response.data?.error || "Server error"}`)
       } else {
         console.log(`Error: ${error.message}`)
@@ -62,18 +63,18 @@ export default function CreateNote() {
           </Link>
 
           <div className="card bg-[hsl(0_0_12%)]">
-            <div className="card-body">
-              <h2 className="card-title text-2xl mb-5">Create New Note</h2>
-              <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-                <label className="flex flex-col w-[50%] gap-2">
-                  <span className="font-medium">Title</span>
-                  <input className="input input-bordered focus:outline-0" value={title} onChange={e => setTitle(e.target.value)} placeholder="Grocery List" />
+            <div className="card-body p-4 sm:p-8">
+              <h2 className="card-title text-xl sm:text-2xl mb-5 sm:mb-6">Create New Note</h2>
+              <form onSubmit={handleSubmit} className="flex flex-col gap-3 sm:gap-4">
+                <label className="flex flex-col w-full sm:w-[50%] gap-2">
+                  <span className="font-medium sm:text-lg">Title</span>
+                  <input className="input input-bordered focus:outline-0 h-10 p-3" value={title} onChange={e => setTitle(e.target.value)} placeholder="Grocery List" />
                 </label>
                 <label className="flex flex-col gap-2">
-                  <span className="font-medium">Content</span>
-                  <textarea className="input rounded-r-none input-bordered focus:outline-0 w-full h-full p-4" rows={5} value={content} onChange={e => setContent(e.target.value)} placeholder="Apples, bread, cheese, french fries" />
+                  <span className="font-medium sm:text-lg">Content</span>
+                  <textarea className="input rounded-r-none input-bordered focus:outline-0 h-full p-3 sm:p-4" rows={5} value={content} onChange={e => setContent(e.target.value)} placeholder="Apples, bread, cheese, french fries" />
                 </label>
-                <button className="btn btn-primary w-fit ml-auto mt-2" disabled={loading}>{loading ? "Saving Note..." : "Create Note"}</button>
+                <button className="btn btn-sm sm:btn-md h-10 sm:h-12 sm:text-[15px] btn-primary ml-auto mt-2" disabled={loading}>{loading ? "Saving Note..." : "Create Note"}</button>
               </form>
             </div>
 

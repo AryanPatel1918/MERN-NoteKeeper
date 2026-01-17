@@ -1,6 +1,6 @@
 import { useState } from "react"
 import axios from "axios"
-import { useNavigate } from "react-router"
+import { Navigate, useNavigate } from "react-router-dom"
 import { SquarePen, Trash2 } from 'lucide-react'
 import { toast } from "react-hot-toast"
 import DeleteModal from "./DeleteModal"
@@ -10,6 +10,11 @@ export default function NoteCard({ note, onDelete }) {
 
   const navigate = useNavigate()
 
+  function navigateToEditNote(e) {
+    e.stopPropagation()
+    navigate(`/edit/${note._id}`)
+  }
+  
   function openModal(e) {
     e.stopPropagation()
     setShowDeleteModal(true)
@@ -38,12 +43,12 @@ export default function NoteCard({ note, onDelete }) {
 
   return (
     <>
-      <div onClick={() => navigate(`/notes/${note._id}`)} title="View Note" className="card bg-base-300 shadow-md cursor-pointer hover:shadow-[#00FF9D] transition-all duration-200 border-t-4 border-[#00FF9D]">
+      <div onClick={() => navigate(`/notes/${note._id}`)} title="View Note" className="card bg-base-300 cursor-pointer shadow-md hover:shadow-[#00FF9D] hover:-translate-y-1 transition-all duration-300 border-t-4 border-[#00FF9D]">
         <div className="card-body p-6">
-          <h3 className="card-title text-base-content">{note.title}</h3>
-          <p className="text-base-content/80 line-clamp-3 break-all">{note.content}</p>
+          <h3 className="card-title text-base sm:text-lg md:text-xl line-clamp-1 break-all">{note.title}</h3>
+          <p className="text-sm sm:text-base md:text-lg text-base-content/80 line-clamp-3 break-all">{note.content}</p>
           <div className="card-actions justify-between items-center mt-4">
-            <span className=" text-base-content/60">
+            <span className="text-sm sm:text-base md:text-lg text-base-content/60">
               {new Date(note.updatedAt).toLocaleString("en-US", {
                 year: "numeric",
                 month: "short",
@@ -53,11 +58,11 @@ export default function NoteCard({ note, onDelete }) {
               })}
             </span>
             <div className="flex items-center gap-3">
-              <button onClick={handleDelete} className="hover:bg-slate-800 p-1.5 rounded-full" title="Edit">
-                <SquarePen className="size-5 text-base-content" />
+              <button onClick={navigateToEditNote} className="hover:bg-slate-800 p-1.5 rounded-full" title="Edit">
+                <SquarePen className="size-5 sm:size-5.5 text-base-content" />
               </button>
               <button onClick={openModal} className="hover:bg-slate-800 p-1.5 rounded-full" title="Delete">
-                <Trash2 className="size-5 text-red-500" />
+                <Trash2 className="size-5 sm:size-5.5 text-red-500" />
               </button>  
             </div>
           </div>
