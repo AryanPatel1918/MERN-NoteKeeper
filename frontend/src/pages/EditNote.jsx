@@ -97,7 +97,7 @@ export default function EditNote() {
                     </label>
                     <label className="flex flex-col gap-2">
                       <span className="font-medium sm:text-lg">Content</span>
-                      <textarea className="input rounded-r-none input-bordered focus:outline-0 h-full p-3 sm:p-4" rows={5} value={content} onChange={e => setContent(e.target.value)} placeholder="Apples, bread, cheese, french fries" />
+                      <textarea className="input rounded-r-none input-bordered focus:outline-0 h-full p-3 sm:p-4" rows={7} value={content} onChange={e => setContent(e.target.value)} placeholder="Apples, bread, cheese, french fries" />
                     </label>
                     <button className="btn btn-sm sm:btn-md h-10 sm:h-12 sm:text-[15px] btn-primary ml-auto mt-2" disabled={isSaving}>{isSaving ? "Updating..." : "Save Changes"}</button>
                   </form>

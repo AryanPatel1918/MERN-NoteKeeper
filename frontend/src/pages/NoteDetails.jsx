@@ -38,22 +38,17 @@ export default function NoteDetails() {
 
 
   return (
-    <div className="min-h-screen bg-base-200">
-      <div className="container mx-auto px-4 py-8">
+    <div className="min-h-screen bg-base-200 mx-auto px-4 py-8">
         <div className="max-w-2xl mx-auto">
           <BackButton />
-
           {isFetching && <LoadingOverlay />}
           <div className={`card bg-[hsl(0_0_12%)] transition-opacity duration-500 ${isFetching ? "opacity-0" : "opacity-100"}`}>
-            <div className="card-body p-4 sm:p-7">
-              <div>
-                <h1 className="text-xl sm:text-2xl font-medium break-words mb-4">{title}</h1>
-                <p className="text-base sm:text-lg overflow-y-auto text-base-content/90 whitespace-pre-wrap leading-relaxed break-words">{content}</p>
-              </div>
+            <div className="card-body p-4 sm:p-7 max-h-[500px] sm:max-h-[550px]">
+                <h1 className="text-lg sm:text-2xl font-medium break-words mb-2">{title}</h1>
+                <p className="text-base rounded-xl sm:text-lg overflow-y-auto text-base-content/90 whitespace-pre-wrap sm:leading-relaxed break-words">{content}</p>
             </div>
           </div>
         </div>
-      </div>
     </div>
   )
 }
