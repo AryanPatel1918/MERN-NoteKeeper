@@ -1,6 +1,6 @@
 import { useState } from "react"
 import axios from "axios"
-import { Navigate, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { SquarePen, Trash2 } from 'lucide-react'
 import { toast } from "react-hot-toast"
 import DeleteModal from "./DeleteModal"

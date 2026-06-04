@@ -84,7 +84,7 @@ export default function EditNote() {
         <div className="max-w-2xl mx-auto">
           <BackButton />
 
-          <div className="card bg-[hsl(0_0_12%)]">
+          <div className="card bg-[hsl(0_0_12%)] mt-6">
             <div className="card-body relative p-4 sm:p-8">
               {isFetching && <LoadingOverlay />}
               
