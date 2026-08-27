@@ -36,7 +36,7 @@ export default function NoteCard({ note, onDelete }) {
         toast.error(`${error.response.status} Error: ${error.response.data?.error || "Server error"}`)
       } else {
         console.log(`Error: ${error.message}`)
-        toast.error("Network error or server not reachable")
+        toast.error("Network error. Please check your connection and try again.")
       }
     }
   }
