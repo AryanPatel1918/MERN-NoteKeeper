@@ -20,12 +20,12 @@ export default function NoteCard({ note, onDelete }) {
     setShowDeleteModal(true)
   }
 
-  async function handleDelete(e) {
-    // e.stopPropagation() only use if not using DeleteModal
+  async function handleDelete() {
     try {
-      await axios.delete(`http://localhost:5000/api/notes/${note._id}`)
+      await axios.delete(`/api/notes/${note._id}`)
       toast.success("Note deleted successfully")
       onDelete(note._id)
+      setShowDeleteModal(false)
     } catch (error) {
       if (error.response?.status === 429) {
         toast("Slow down. Please wait a few seconds before trying again.", {
