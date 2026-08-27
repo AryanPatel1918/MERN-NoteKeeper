@@ -15,7 +15,7 @@ export default function EditNote() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/api/notes/${id}`)
+    axios.get(`/api/notes/${id}`)
       .then(res => {
         setTitle(res.data.title)
         setContent(res.data.content)
@@ -55,7 +55,7 @@ export default function EditNote() {
 
     setIsSaving(true)
     try {
-      await axios.put(`http://localhost:5000/api/notes/${id}`, {
+      await axios.put(`/api/notes/${id}`, {
         title: trimmedTitle,
         content: trimmedContent
       })

@@ -16,13 +16,14 @@ export default function Home() {
   const [error, setError] = useState(false)
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/notes')
+    axios.get('/api/notes')
       .then(res => {
         setNotes(res.data)
         setIsRateLimited(false)
       })
       .catch(error => {
         if (error.response?.status === 429) {
+          console.log(error)
           setIsRateLimited(true)
         } else {
           // toast.error("Failed to load notes")

@@ -19,7 +19,7 @@ export default function NoteDetails() {
 
   async function handleDelete() {
     try {
-      await axios.delete(`http://localhost:5000/api/notes/${id}`)
+      await axios.delete(`/api/notes/${id}`)
       toast.success("Note deleted successfully")
       navigate('/')
     } catch (error) {
@@ -38,7 +38,7 @@ export default function NoteDetails() {
   }
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/api/notes/${id}`)
+    axios.get(`/api/notes/${id}`)
       .then(res => {
         setTitle(res.data.title)
         setContent(res.data.content)
