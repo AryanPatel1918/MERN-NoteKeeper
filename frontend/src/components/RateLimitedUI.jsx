@@ -11,7 +11,7 @@ export default function RateLimitedUI() {
           <div className="flex-1 text-center md:text-left">
             <h3 className="sm:text-xl font-bold mb-2">Rate Limit Exceeded</h3>
             <p className="text-sm sm:text-base text-base-content mb-1">You've made too many requests in a short period. Please wait a few seconds before trying again.</p>
-            <p className="text-sm sm:text-base text-base-content opacity-70">This ensures the best experience.</p>
+            <p className="text-sm sm:text-base text-base-content/70">This ensures the best experience.</p>
           </div>
         </div>
       </div>

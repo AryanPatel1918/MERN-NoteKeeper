@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import axios from 'axios'
 import Navbar from '../components/Navbar'
 import RateLimitedUI from '../components/RateLimitedUI'
@@ -26,7 +25,7 @@ export default function Home() {
           console.log(error)
           setIsRateLimited(true)
         } else {
-          // toast.error("Failed to load notes")
+          toast.error("Failed to load notes")
           setError(true)
           console.log(error)
         }

@@ -9,9 +9,8 @@ export default function BackendErrorState() {
             <ServerOff className="size-8 sm:size-10 text-error" />
           </div>
           <div className="flex-1 text-center md:text-left">
-            <h3 className="sm:text-xl font-bold mb-2">Server not available</h3>
-            <p className="text-sm sm:text-base text-base-content mb-1">We couldn’t connect to the server right now.</p>
-            <p className="text-sm sm:text-base text-base-content/70">Make sure the backend is running, then refresh the page.</p>
+            <h3 className="sm:text-xl font-bold mb-2">Server unavailable</h3>
+            <p className="text-sm sm:text-base text-base-content mb-1">We couldn’t connect to the server right now. Please try again in a moment.</p>
           </div>
         </div>
       </div>
