@@ -68,15 +68,15 @@ export default function NoteDetails() {
     <>
       <div className="min-h-screen bg-base-200 mx-auto px-4 py-8">
           <div className="max-w-2xl mx-auto">
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center justify-between mb-2 sm:mb-6">
               <BackButton />
-              <div className="flex items-center gap-3">
-                <button onClick={navigateToEditNote} className="btn border border-base-content text-base-content hover:bg-base-content hover:text-base-100 p-3 rounded-full">
-                  <SquarePen className="size-5 sm:size-5.5" />
+              <div className="flex items-center gap-2 sm:gap-3">
+                <button onClick={navigateToEditNote} className="btn border text-[13px] sm:text-[14px] border-base-content text-base-content hover:bg-base-content hover:text-base-100 p-3 rounded-full gap-1 sm:gap-2">
+                  <SquarePen className="size-4 sm:size-5" />
                   Edit
                 </button>
-                <button onClick={() => setShowDeleteModal(true)} className="btn border border-red-500 text-red-500 hover:text-slate-800 hover:bg-red-500 p-3 rounded-full">
-                  <Trash2 className="size-5 sm:size-5.5" />
+                <button onClick={() => setShowDeleteModal(true)} className="btn border text-[13px] sm:text-[14px] border-red-500 text-sm text-red-500 hover:text-slate-800 hover:bg-red-500 p-3 rounded-full gap-1 sm:gap-2">
+                  <Trash2 className="size-4 sm:size-5" />
                   Delete
                 </button> 
               </div>

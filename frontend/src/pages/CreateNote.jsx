@@ -59,7 +59,7 @@ export default function CreateNote() {
         <div className="max-w-2xl mx-auto">
           <BackButton />
 
-          <div className="card bg-[hsl(0_0_12%)]">
+          <div className="card bg-[hsl(0_0_12%)] mt-2 sm:mt-6">
             <div className="card-body p-4 sm:p-8">
               <h2 className="card-title text-xl sm:text-2xl mb-5 sm:mb-6">Create New Note</h2>
               <form onSubmit={handleSubmit} className="flex flex-col gap-3 sm:gap-4">
