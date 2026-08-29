@@ -68,7 +68,7 @@ export default function NoteDetails() {
     <>
       <div className="min-h-screen bg-base-200 mx-auto px-4 py-8">
           <div className="max-w-2xl mx-auto">
-            <div className="flex items-center justify-between mb-2 sm:mb-6">
+            <div className="flex items-center justify-between mb-4 sm:mb-6">
               <BackButton />
               <div className="flex items-center gap-2 sm:gap-3">
                 <button onClick={navigateToEditNote} className="btn border text-[13px] sm:text-[14px] border-base-content text-base-content hover:bg-base-content hover:text-base-100 p-3 rounded-full gap-1 sm:gap-2">

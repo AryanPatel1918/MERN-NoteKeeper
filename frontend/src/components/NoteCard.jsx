@@ -48,7 +48,7 @@ export default function NoteCard({ note, onDelete }) {
           <h3 className="card-title text-base sm:text-lg line-clamp-1 break-words">{note.title}</h3>
           <p className="text-sm sm:text-base text-base-content/80 line-clamp-3 break-words">{note.content}</p>
           <div className="card-actions justify-between items-center mt-4">
-            <span className="text-sm sm:text-base text-base-content/60">
+            <span className="text-sm sm:text-base font-semibold text-base-content/60">
               {new Date(note.updatedAt).toLocaleString("en-US", {
                 year: "numeric",
                 month: "short",
@@ -57,7 +57,7 @@ export default function NoteCard({ note, onDelete }) {
                 minute: "2-digit"
               })}
             </span>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 sm:gap-3">
               <button onClick={navigateToEditNote} className="hover:bg-slate-800 p-1.5 rounded-full" title="Edit">
                 <SquarePen className="size-5 sm:size-5.5 text-base-content" />
               </button>
