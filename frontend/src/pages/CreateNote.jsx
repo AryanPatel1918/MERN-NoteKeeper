@@ -63,13 +63,13 @@ export default function CreateNote() {
             <div className="card-body p-4 sm:p-7">
               <h2 className="card-title text-xl sm:text-2xl mb-3 sm:mb-5">New Note</h2>
               <form onSubmit={handleSubmit} className="flex flex-col gap-3 sm:gap-4">
-                <label className="flex flex-col w-full sm:w-[50%] gap-2">
+                <label className="flex flex-col w-full sm:w-[50%] gap-1 sm:gap-2">
                   <span className="font-medium sm:text-lg">Title</span>
-                  <input className="input input-bordered focus:outline-0 h-10 p-3" value={title} onChange={e => setTitle(e.target.value)} placeholder="Grocery List" />
+                  <input className="input rounded-xl input-bordered focus:outline-0 h-10 p-2 sm:p-3" value={title} onChange={e => setTitle(e.target.value)} placeholder="Grocery List" />
                 </label>
-                <label className="flex flex-col gap-2">
+                <label className="flex flex-col gap-1 sm:gap-2">
                   <span className="font-medium sm:text-lg">Content</span>
-                  <textarea className="input rounded-r-none input-bordered focus:outline-0 h-full p-3 sm:p-4" rows={5} value={content} onChange={e => setContent(e.target.value)} placeholder="Apples, bread, cheese, french fries" />
+                  <textarea className="input rounded-xl input-bordered focus:outline-0 h-full p-2 sm:p-3" rows={5} value={content} onChange={e => setContent(e.target.value)} placeholder="Apples, bread, cheese, french fries" />
                 </label>
                 <button className="btn btn-sm sm:btn-md h-10 sm:h-12 sm:text-[15px] btn-primary ml-auto mt-1 sm:mt-2" disabled={loading}>{loading ? "Saving..." : "Create Note"}</button>
               </form>

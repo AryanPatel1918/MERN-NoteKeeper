@@ -21,16 +21,15 @@ export default function EditNote() {
         setContent(res.data.content)
       })
       .catch(error => {
-        if (error.response) {
-          if (error.response.status === 429) {
-            toast("Slow down! Please wait a few seconds before trying again.", {
-              icon: "⌛"
-            })
-            return
-          }
-          toast.error(`${error.response.status} Error: ${error.response.data?.error || "Server error"}`)
+        if (error.response.status === 429) {
+          toast("Slow down! Please wait a few seconds before trying again.", {
+            icon: "⌛"
+          })
+        } else if (error.response?.status === 404) {
+          toast.error("Note not found")
         } else {
           console.log(`Error: ${error.message}`)
+          toast.error(`${error.response.status} Error: ${error.status || "Server error"}`)
           toast.error("Failed to load note")
         }
       })
@@ -63,7 +62,7 @@ export default function EditNote() {
       navigate('/')
     } catch (error) {
       if (error.response?.status === 429) {
-        toast("You're creating notes too quickly. Please wait a few seconds before trying again.", {
+        toast("You're making changes too quickly. Please wait a few seconds before trying again.", {
           icon: "⌛"
         })
       } else if (error.response) {
@@ -91,13 +90,13 @@ export default function EditNote() {
               <div className={`transition-opacity duration-500 ${isFetching ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
                 <h2 className="card-title text-xl sm:text-2xl mb-5 sm:mb-6">Edit Note</h2>
                   <form onSubmit={handleSubmit} className="flex flex-col gap-3 sm:gap-4">
-                    <label className="flex flex-col w-full sm:w-[50%] gap-2">
+                    <label className="flex flex-col w-full sm:w-[50%] gap-1 sm:gap-2">
                       <span className="font-medium sm:text-lg">Title</span>
-                      <input className="input input-bordered focus:outline-0 h-10 p-3" value={title} onChange={e => setTitle(e.target.value)} placeholder="Grocery List" />
+                      <input className="input rounded-xl input-bordered focus:outline-0 h-10 p-2 sm:p-3" value={title} onChange={e => setTitle(e.target.value)} placeholder="Grocery List" />
                     </label>
-                    <label className="flex flex-col gap-2">
+                    <label className="flex flex-col gap-1 sm:gap-2">
                       <span className="font-medium sm:text-lg">Content</span>
-                      <textarea className="input rounded-r-none input-bordered focus:outline-0 h-56 p-3 sm:p-4" rows={7} value={content} onChange={e => setContent(e.target.value)} placeholder="Apples, bread, cheese, french fries" />
+                      <textarea className="input rounded-xl input-bordered focus:outline-0 h-56 p-2 sm:p-3" rows={7} value={content} onChange={e => setContent(e.target.value)} placeholder="Apples, bread, cheese, french fries" />
                     </label>
                     <button className="btn btn-sm sm:btn-md h-10 sm:h-12 sm:text-[15px] btn-primary ml-auto mt-2" disabled={isSaving}>{isSaving ? "Updating..." : "Save Changes"}</button>
                   </form>

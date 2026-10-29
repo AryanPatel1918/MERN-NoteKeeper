@@ -1,3 +1,4 @@
+import mongoose from "mongoose"
 import Note from "../models/Note.js"
 
 // Get all notes
@@ -15,6 +16,11 @@ export async function getAllNotes(req, res) {
 export async function getNoteById(req, res) {
     try {
         const { id } = req.params
+
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(404).json({message: "Note not found"})
+        }
+
         const note = await Note.findById(id)
         if (!note) {
             return res.status(404).json({message: "Note not found"})
@@ -41,6 +47,11 @@ export async function createNote(req, res) {
 export async function updateNote(req, res) {
     try {
         const { id } = req.params
+
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(404).json({message: "Note not found"})
+        }
+        
         const updatedNote = await Note.findByIdAndUpdate(
             id,
             req.body,
@@ -60,6 +71,11 @@ export async function updateNote(req, res) {
 export async function deleteNote(req, res) {
     try {
         const { id } = req.params
+
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(404).json({message: "Note not found"})
+        }
+
         const deletedNote = await Note.findByIdAndDelete(id)
         if (!deletedNote) {
             return res.status(404).json({message: "Note not found"})
