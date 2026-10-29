@@ -11,6 +11,8 @@ import BackButton from "../components/BackButton"
 import DeleteModal from "../components/DeleteModal"
 
 export default function EditNote() {
+  const [originalTitle, setOriginalTitle] = useState("")
+  const [originalContent, setOriginalContent] = useState("")
   const [title, setTitle] = useState("")
   const [content, setContent] = useState("")
   const [notFound, setNotFound] = useState(false)
@@ -88,6 +90,8 @@ export default function EditNote() {
   useEffect(() => {
     axios.get(`/api/notes/${id}`)
       .then(res => {
+        setOriginalTitle(res.data.title)
+        setOriginalContent(res.data.content)
         setTitle(res.data.title)
         setContent(res.data.content)
       })
@@ -109,6 +113,7 @@ export default function EditNote() {
       .finally(() => setIsFetching(false))
   }, [id])
 
+  const hasChanges = title !== originalTitle || content !== originalContent
 
   return (
     <>
@@ -151,7 +156,7 @@ export default function EditNote() {
                     <span className="font-medium sm:text-lg">Content</span>
                     <textarea className="input rounded-xl input-bordered focus:outline-0 h-56 p-2 sm:p-3" rows={7} value={content} onChange={e => setContent(e.target.value)} placeholder="Apples, bread, cheese, french fries" />
                   </label>
-                  <button className="btn btn-sm sm:btn-md h-10 sm:h-12 sm:text-[15px] btn-primary ml-auto mt-2" disabled={isSaving}>{isSaving ? "Updating..." : "Save Changes"}</button>
+                  <button className="btn btn-sm sm:btn-md h-10 sm:h-12 sm:text-[15px] btn-primary ml-auto mt-2 disabled:!bg-primary/60 disabled:!text-primary-content/70 disabled:opacity-100" disabled={isSaving || !hasChanges}>{isSaving ? "Updating..." : "Save Changes"}</button>
                 </form>
               </div>
             </div>
